@@ -1,0 +1,17 @@
+{
+  "criteria": {
+    "lvmnt:stone_superaxe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:stone"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": ["lvmnt:stone_superaxe"]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "lvmnt",
+  "version": "${version}",
+
+  "name": "SuperAxes",
+  "description": "A mod for chopping down trees for easier wood resource gathering",
+  "authors": [
+    "Levoment"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Levoment/SuperAxes",
+    "sources": "https://github.com/Levoment/SuperAxes"
+  },
+
+  "license": "MIT",
+  "icon": "assets/lvmnt/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.github.levoment.superaxes.SuperAxesMod"
+    ],
+    "modmenu": [
+      "com.github.levoment.superaxes.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "lvmnt.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.8",
+    "fabric": "*",
+    "minecraft": ["1.16", "1.16.1"]
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.github.levoment.superaxes.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "SuperAxesMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

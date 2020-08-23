@@ -1,0 +1,23 @@
+{
+  "item.lvmnt.wooden_superaxe": "Wooden SuperAxe",
+  "item.lvmnt.stone_superaxe": "Stone SuperAxe",
+  "item.lvmnt.iron_superaxe": "Iron SuperAxe",
+  "item.lvmnt.gold_superaxe": "Gold SuperAxe",
+  "item.lvmnt.diamond_superaxe": "Diamond SuperAxe",
+  "item.lvmnt.netherite_superaxe": "Netherite SuperAxe",
+
+  "itemGroup.lvmnt.superaxes": "SuperAxes",
+
+  "configuration.superaxes.config": "SuperAxes configuration",
+  "axebehaviour.superaxes.general": "SuperAxes behaviour",
+
+  "option.superaxes.harvest_leaves": "Harvest leaves",
+  "option.superaxes.harvest_leaves.tooltip": "Default is §cNo§r. §aYes §rwill harvest the tree leaves.",
+  "option.superaxes.range": "Leaves scanning range",
+  "option.superaxes.range.tooltip": "Default is 5. A greater range will scan a greater radius of leaves to harvest.",
+  "option.superaxes.limit_log_search": "Limit Log Search Radius",
+  "option.superaxes.limit_log_search.tooltip": "Default is §cNo§r. Use §aYes §rif it takes too long to harvest trees on modded biomes.",
+  "option.superaxes.log_radius": "Log search radius",
+  "option.superaxes.log_radius.tooltip": "Default is 8. A greater range will scan a greater radius of logs to harvest."
+}
+

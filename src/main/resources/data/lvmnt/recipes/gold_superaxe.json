@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPW",
+    "PSW",
+    " S "
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:gold_block"
+    },
+    "P": {
+      "item": "minecraft:gold_ingot"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "lvmnt:gold_superaxe"
+  }
+}
+

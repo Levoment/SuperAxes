@@ -1,0 +1,17 @@
+{
+  "criteria": {
+    "lvmnt:diamond_superaxe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:diamond"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": ["lvmnt:diamond_superaxe"]
+  }
+}

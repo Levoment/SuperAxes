@@ -1,0 +1,17 @@
+{
+  "criteria": {
+    "lvmnt:iron_superaxe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:netherite_ingot"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": ["lvmnt:netherite_superaxe"]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "criteria": {
+    "lvmnt:wooden_superaxe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "minecraft:logs"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": ["lvmnt:wooden_superaxe"]
+  }
+}

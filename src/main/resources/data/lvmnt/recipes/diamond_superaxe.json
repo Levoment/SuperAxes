@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPW",
+    "PSW",
+    " S "
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:diamond_block"
+    },
+    "P": {
+      "item": "minecraft:diamond"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "lvmnt:diamond_superaxe"
+  }
+}
+
