@@ -6,17 +6,11 @@ import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.TranslatableText;
 
 import java.util.Properties;
-import java.util.function.Function;
 
 public class ModMenuIntegration implements ModMenuApi {
-    @Override
-    public String getModId() {
-        return SuperAxesMod.MODID;
-    }
 
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {

@@ -14,7 +14,6 @@ import net.minecraft.world.World;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.LinkedBlockingDeque;
 
 public class TreeChopper {
@@ -34,8 +33,8 @@ public class TreeChopper {
     private ConcurrentLinkedQueue<BlockPos> verificationQueueOfLeavesToBreak = new ConcurrentLinkedQueue<>();
 
     // Variables for storing all the logs and leaves that will be attempted to harvest once all positions of the blocks have been gathered
-    private BlockingQueue finalQueueOfBlocksToBreak = new LinkedBlockingDeque();
-    private BlockingQueue finalQueueOfLeavesToBreak = new LinkedBlockingDeque();
+    private BlockingQueue<BlockPos> finalQueueOfBlocksToBreak = new LinkedBlockingDeque<>();
+    private BlockingQueue<BlockPos> finalQueueOfLeavesToBreak = new LinkedBlockingDeque<>();
 
 
     // The original block position of the initial block that was mined
@@ -46,7 +45,7 @@ public class TreeChopper {
     boolean CurrentIsLog = true;
 
 
-    public void cutTree(BlockState state, World world, BlockPos pos, PlayerEntity miner, ItemStack itemStack) {
+    public void cutTree(World world, BlockPos pos, PlayerEntity miner, ItemStack itemStack) {
 
         // Set the original position
         this.originalPosition = pos;
@@ -166,7 +165,7 @@ public class TreeChopper {
         while (!finalQueueOfBlocksToBreak.isEmpty()) {
             try {
                 // Extract one element from the queue containing the log position
-                BlockPos positionToBreak = (BlockPos) finalQueueOfBlocksToBreak.take();
+                BlockPos positionToBreak = finalQueueOfBlocksToBreak.take();
                 // Pass the element to the method handling the logic on whether or not to break the log
                 breakLogs(world, positionToBreak, miner, itemStack);
             } catch (InterruptedException e) {
@@ -179,7 +178,7 @@ public class TreeChopper {
             // Wait half a second after breaking blocks to get updated leaves status
             try {
                 Thread.sleep(500);
-            } catch (InterruptedException interruptedException) {
+            } catch (InterruptedException ignored) {
 
             }
 
@@ -204,7 +203,7 @@ public class TreeChopper {
             while (!finalQueueOfLeavesToBreak.isEmpty()) {
                 try {
                     // Extract one element from the queue
-                    BlockPos blockPos = (BlockPos) finalQueueOfLeavesToBreak.take();
+                    BlockPos blockPos = finalQueueOfLeavesToBreak.take();
                     // Pass the element to the method handling the logic on whether or not to break the leaf
                     breakLeaves(world, blockPos, miner, itemStack);
                 } catch (InterruptedException e) {

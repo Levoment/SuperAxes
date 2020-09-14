@@ -17,7 +17,7 @@ public class SuperAxesMod implements ModInitializer {
 	public static String MODID = "lvmnt";
 	public static final ItemGroup SUPERAXES_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, "superaxes"), () -> new ItemStack(ModItems.WoodenSuperAxe));
 	// Config file
-	public static File configFile = new File(FabricLoader.getInstance().getConfigDirectory(), "superaxes.properties");
+	public static File configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), "superaxes.properties");
 	// Config properties
 	public static boolean harvestLeaves = false;
 	public static int range = 5;
@@ -28,7 +28,7 @@ public class SuperAxesMod implements ModInitializer {
 	public void onInitialize() {
 
 		// Load configuration
-		loadConfig(this.configFile);
+		loadConfig(configFile);
 
 		// Initialize items
 		ModItems.initializeItems();
@@ -81,8 +81,6 @@ public class SuperAxesMod implements ModInitializer {
 			// Save the properties to the file
 			properties.store(output, null);
 			output.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
