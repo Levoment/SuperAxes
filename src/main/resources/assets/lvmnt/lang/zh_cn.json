@@ -1,0 +1,18 @@
+{
+  "item.lvmnt.wooden_superaxe": "超级木斧",
+  "item.lvmnt.stone_superaxe": "超级石斧",
+  "item.lvmnt.iron_superaxe": "超级铁斧",
+  "item.lvmnt.gold_superaxe": "超级金斧",
+  "item.lvmnt.diamond_superaxe": "超级钻石斧",
+  "item.lvmnt.netherite_superaxe": "超级下界合金斧",
+
+  "itemGroup.lvmnt.superaxes": "超级斧头",
+
+  "configuration.superaxes.config": "超级斧头配置",
+  "axebehaviour.superaxes.general": "超级斧头行为",
+
+  "option.superaxes.harvest_leaves": "收割树叶",
+  "option.superaxes.harvest_leaves.tooltip": "默认为§cNo§r。§aYes§r将会收割树叶。",
+  "option.superaxes.range": "树叶扫描范围",
+  "option.superaxes.range.tooltip": "默认为5。范围越大收割的树叶也越多。"
+}
