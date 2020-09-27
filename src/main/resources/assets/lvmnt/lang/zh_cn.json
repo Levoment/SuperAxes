@@ -14,7 +14,7 @@
   "option.superaxes.harvest_leaves": "收割树叶",
   "option.superaxes.harvest_leaves.tooltip": "默认为§cNo§r。§aYes§r将会收割树叶。",
   "option.superaxes.range": "树叶扫描范围",
-  "option.superaxes.range.tooltip": "默认为5。范围越大收割的树叶也越多。"
+  "option.superaxes.range.tooltip": "默认为5。范围越大收割的树叶也越多。",
   "option.superaxes.limit_log_search": "限制木头搜索半径",
   "option.superaxes.limit_log_search.tooltip": "默认为§cNo§r。如果在其他模组的生物群落中收割树木需要太长时间，请使用§aYes §r",
   "option.superaxes.log_radius": "木头搜索半径",
