@@ -8,15 +8,15 @@
 
   "itemGroup.lvmnt.superaxes": "超级斧头",
 
-  "configuration.superaxes.config": "超级斧头配置",
-  "axebehaviour.superaxes.general": "超级斧头行为",
+  "configuration.superaxes.config": "超级斧头配置菜单",
+  "axebehaviour.superaxes.general": "超级斧头通用",
 
   "option.superaxes.harvest_leaves": "收割树叶",
-  "option.superaxes.harvest_leaves.tooltip": "默认为§cNo§r。§aYes§r将会收割树叶。",
+  "option.superaxes.harvest_leaves.tooltip": "默认为§c否§r。选择§a是§r将会收割树叶。",
   "option.superaxes.range": "树叶扫描范围",
   "option.superaxes.range.tooltip": "默认为5。范围越大收割的树叶也越多。",
   "option.superaxes.limit_log_search": "限制木头搜索半径",
-  "option.superaxes.limit_log_search.tooltip": "默认为§cNo§r。如果在其他模组的生物群落中收割树木需要太长时间，请使用§aYes §r",
+  "option.superaxes.limit_log_search.tooltip": "默认为§c否§r。如果在其他模组的生物群落中收割树木需要太长时间，请改为§a是§r",
   "option.superaxes.log_radius": "木头搜索半径",
-  "option.superaxes.log_radius.tooltip": "默认为8。扫描范围越大，收割的范围就越大。"
+  "option.superaxes.log_radius.tooltip": "默认为8。搜索半径越大，收割的范围就越大。"
 }
