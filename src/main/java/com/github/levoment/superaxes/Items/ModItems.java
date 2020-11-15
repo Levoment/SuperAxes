@@ -4,12 +4,12 @@ package com.github.levoment.superaxes.Items;
 import com.github.levoment.superaxes.SuperAxesMaterialGenerator;
 import com.github.levoment.superaxes.SuperAxesMod;
 import net.minecraft.item.Item;
-import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.ToolMaterials;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ModItems {
 

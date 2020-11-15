@@ -6,6 +6,8 @@ import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.text.Style;
+import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 
 import java.util.Properties;
@@ -54,6 +56,35 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setSaveConsumer(newValue -> SuperAxesMod.logRadius = newValue)
                     .build());
 
+
+            // The shape scale tooltip
+            Text[] shapeScaleTexts = {
+                    new TranslatableText("option.superaxes.shape_scale").setStyle(Style.EMPTY.withBold(true)),
+                    new TranslatableText("option.superaxes.shape_scale.tooltip"),
+                    new TranslatableText("option.superaxes.shape_scale.tooltip_2"),
+                    new TranslatableText("option.superaxes.shape_scale.tooltip_3")};
+            // Set an option for the shape scale
+            general.addEntry(entryBuilder.startIntField (new TranslatableText("option.superaxes.shape_scale"), SuperAxesMod.shapeScale)
+                    .setDefaultValue(1)
+                    .setTooltip(shapeScaleTexts)
+                    .setSaveConsumer(newValue -> SuperAxesMod.shapeScale = newValue)
+                    .setMin(1)
+                    .build());
+
+            // The shape show debug lines tooltip
+            Text[] showDebugLinesTexts = {
+                    new TranslatableText("option.superaxes.debug_lines").setStyle(Style.EMPTY.withBold(true)),
+                    new TranslatableText("option.superaxes.debug_lines.tooltip"),
+                    new TranslatableText("option.superaxes.debug_lines.tooltip_2"),
+                    new TranslatableText("option.superaxes.debug_lines.tooltip_3"),
+                    new TranslatableText("option.superaxes.debug_lines.tooltip_4")};
+            // Set an option for showing bounding lines of blocks that will be broken
+            general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("option.superaxes.debug_lines"), SuperAxesMod.showDebugLines)
+                    .setDefaultValue(false)
+                    .setTooltip(showDebugLinesTexts)
+                    .setSaveConsumer(newValue -> SuperAxesMod.showDebugLines = newValue)
+                    .build());
+
             // Save config
             builder.setSavingRunnable(() -> {
                 // Create a Property
@@ -63,6 +94,8 @@ public class ModMenuIntegration implements ModMenuApi {
                 configProperties.setProperty("range", String.valueOf(SuperAxesMod.range));
                 configProperties.setProperty("limitSearch", String.valueOf(SuperAxesMod.limitSearch));
                 configProperties.setProperty("logRadius", String.valueOf(SuperAxesMod.logRadius));
+                configProperties.setProperty("shapeScale", String.valueOf(SuperAxesMod.shapeScale));
+                configProperties.setProperty("showDebugLines", String.valueOf(SuperAxesMod.showDebugLines));
                 // Save the properties
                 SuperAxesMod.saveConfig(SuperAxesMod.configFile, configProperties);
             });

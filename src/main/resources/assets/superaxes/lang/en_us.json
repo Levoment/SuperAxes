@@ -18,6 +18,15 @@
   "option.superaxes.limit_log_search": "Limit Log Search Radius",
   "option.superaxes.limit_log_search.tooltip": "Default is §cNo§r. Use §aYes §rif it takes too long to harvest trees on modded biomes.",
   "option.superaxes.log_radius": "Log search radius",
-  "option.superaxes.log_radius.tooltip": "Default is 8. A greater range will scan a greater radius of logs to harvest."
+  "option.superaxes.log_radius.tooltip": "Default is 8. A greater range will scan a greater radius of logs to harvest.",
+  "option.superaxes.shape_scale": "Scanning area shape scale",
+  "option.superaxes.shape_scale.tooltip": "Default is 1",
+  "option.superaxes.shape_scale.tooltip_2": "A greater number will scan for logs separated by leaves at the expense of time",
+  "option.superaxes.shape_scale.tooltip_3": "§eWarning:§r Not recommended to change. Can cause lag or unresponsiveness.",
+  "option.superaxes.debug_lines": "Show Debug Lines",
+  "option.superaxes.debug_lines.tooltip": "Default is §cNo§r",
+  "option.superaxes.debug_lines.tooltip_2": "Use §aYes §rto enable the use of SHIFT+RIGHT_CLICK to see log blocks",
+  "option.superaxes.debug_lines.tooltip_3": "that would be harvested if the SuperAxe is used on the log block",
+  "option.superaxes.debug_lines.tooltip_4": "that was SHIFT+RIGHT_CLICKED upon."
 }
 

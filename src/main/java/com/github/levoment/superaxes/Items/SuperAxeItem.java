@@ -1,24 +1,38 @@
 package com.github.levoment.superaxes.Items;
 
 import com.github.levoment.superaxes.SuperAxesMaterialGenerator;
+import com.github.levoment.superaxes.SuperAxesMod;
 import com.github.levoment.superaxes.TreeChopper;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.BlockTags;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.Objects;
 
 public class SuperAxeItem extends AxeItem {
+
+    private boolean renderBoxes = false;
+
+    // Create a new TreeChopper instance
+    private TreeChopper treeChopper;
+
+    // Target block
+    private BlockHitResult blockHitResult;
 
     // Constructor
     public SuperAxeItem(ToolMaterial material, Settings settings) {
@@ -85,5 +99,56 @@ public class SuperAxeItem extends AxeItem {
             }
         }
 
+    }
+
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        // Get whether the player is sneaking or not
+        boolean isPlayerSneaking;
+        isPlayerSneaking = Objects.requireNonNull(context.getPlayer()).isSneaking();
+        if (context.getWorld().isClient() && context.getWorld().getBlockState(context.getBlockPos()).isIn(BlockTags.LOGS)) {
+            // If the player is sneaking and the render boxes has not been set and the configuration has show debug lines set
+            if (isPlayerSneaking && !this.renderBoxes && SuperAxesMod.showDebugLines) {
+                if (MinecraftClient.getInstance().crosshairTarget instanceof BlockHitResult) {
+                    // Create the tree chopper instance
+                    this.treeChopper = new TreeChopper();
+                    // Scan for the tree
+                    this.treeChopper.scanTree(context.getWorld(), context.getBlockPos());
+                    // Set a variable to render boxes
+                    this.renderBoxes = true;
+                    this.blockHitResult = (BlockHitResult) MinecraftClient.getInstance().crosshairTarget;
+                    return ActionResult.CONSUME;
+                }
+            } else if (context.getPlayer().isSneaking() && this.renderBoxes) {
+                // Set a variable to stop rendering boxes
+                this.renderBoxes = false;
+                return ActionResult.CONSUME;
+            }
+        } else if (context.getWorld().isClient() && !context.getWorld().getBlockState(context.getBlockPos()).isIn(BlockTags.LOGS)) {
+            this.renderBoxes = false;
+        }
+
+        // If the player is sneaking and this part of the code was reached
+        if (isPlayerSneaking) {
+            return ActionResult.SUCCESS;
+        } else {
+            return super.useOnBlock(context);
+        }
+    }
+
+    public BlockHitResult getBlockHitResult() {
+        return blockHitResult;
+    }
+
+    public TreeChopper getTreeChopper() {
+        return treeChopper;
+    }
+
+    public boolean shouldRenderBoxes() {
+        return renderBoxes;
+    }
+
+    public void setShouldRenderBoxes(boolean renderBoxes) {
+        this.renderBoxes = renderBoxes;
     }
 }

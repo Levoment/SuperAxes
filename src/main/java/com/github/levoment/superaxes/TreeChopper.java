@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
+import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -40,6 +41,9 @@ public class TreeChopper {
     // The original block position of the initial block that was mined
     private BlockPos originalPosition;
 
+    // The shape size to scan for logs
+    private int shapeSize = 1;
+
 
     // Assume first block is a log
     boolean CurrentIsLog = true;
@@ -50,18 +54,56 @@ public class TreeChopper {
         // Set the original position
         this.originalPosition = pos;
 
+        // Set the shape size
+        shapeSize = Math.abs(SuperAxesMod.shapeScale);
+
         // Fill a queue with positions in a 9x9 block around the broken block
         fillConcurrentQueue(world, pos);
 
         // This call traverses the tree in parallel for the current items in the queues initialQueueOfBlocksToBreak and initialQueueOfLeavesToBreak to look for more logs or leaves to break
         // It also breaks the logs first and then traverses through the leaves and breaks them
         parallelTraverseTreeAndBreakBlocks(world, miner, itemStack);
+
+    }
+
+    public void scanTree(World world, BlockPos pos) {
+        // Set the original position
+        this.originalPosition = pos;
+
+        // Set the shape size
+        shapeSize = Math.abs(SuperAxesMod.shapeScale);
+
+        // Fill a queue with positions in a 9x9 block around the broken block
+        fillConcurrentQueue(world, pos);
+
+        // This call traverses the tree in parallel for the current items in the queues initialQueueOfBlocksToBreak and initialQueueOfLeavesToBreak to look for more logs or leaves to break
+        parallelTraverseTree(world);
+    }
+
+    public void parallelTraverseTree(World world) {
+        // Fill the list of logs to break
+        while (!initialQueueOfBlocksToBreak.isEmpty()) {
+            // Scan for adjacent blocks in parallel
+            initialQueueOfBlocksToBreak.parallelStream().forEach(blockPos ->
+            {
+                // For the current block, scan for blocks in a 9x9 area around it
+                fillConcurrentQueue(world, blockPos);
+                try {
+                    // Add the current position to the definitive queue of block positions containing the log blocks to break
+                    finalQueueOfBlocksToBreak.put(blockPos);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                // Block position was processed, remove it from the queue
+                initialQueueOfBlocksToBreak.remove(blockPos);
+            });
+        }
     }
 
     public void fillConcurrentQueue(World world, BlockPos pos) {
-        for (int y = -1; y <= 1; y++) {
-            for (int x = -1; x <= 1; x++) {
-                for (int z = -1; z <= 1; z++) {
+        for (int y = -(shapeSize); y <= shapeSize; y++) {
+            for (int x = -(shapeSize); x <= shapeSize; x++) {
+                for (int z = -shapeSize; z <= shapeSize; z++) {
                     BlockPos newPosition = pos.add(x, y, z);
                     // Check if we don't want to harvest leaves
                     if (!SuperAxesMod.harvestLeaves) {
@@ -142,6 +184,8 @@ public class TreeChopper {
         }
     }
 
+
+
     public void parallelTraverseTreeAndBreakBlocks(World world, PlayerEntity miner, ItemStack itemStack) {
         // Fill the list of logs to break
         while (!initialQueueOfBlocksToBreak.isEmpty()) {
@@ -159,6 +203,12 @@ public class TreeChopper {
                 // Block position was processed, remove it from the queue
                 initialQueueOfBlocksToBreak.remove(blockPos);
             });
+        }
+
+        // If the item stack is an instance of SuperAxeItem
+        if (itemStack.getItem() instanceof SuperAxeItem) {
+            // Disable rendering of blocks to chop down
+            ((SuperAxeItem)itemStack.getItem()).setShouldRenderBoxes(false);
         }
 
         // While the queue of logs to break is not empty
@@ -222,7 +272,7 @@ public class TreeChopper {
                 // Check if the item is about to break
                 if (miner.getMainHandStack().getMaxDamage() - miner.getMainHandStack().getDamage() == 1) axeBroken = true;
                 // Check if the superaxe hasn't broken or if the game mode is creative
-                if (miner.getMainHandStack().getDamage() > 0 || world.getServer().getDefaultGameMode().isCreative()) {
+                if (miner.getMainHandStack().getDamage() > 0 || Objects.requireNonNull(world.getServer()).getDefaultGameMode().isCreative()) {
                     if (!firstBlockBroken) {
                         // Set that the first block is already broken as it will be broken
                         this.firstBlockBroken = true;
@@ -275,5 +325,9 @@ public class TreeChopper {
                 }
             });
         }
+    }
+
+    public BlockingQueue<BlockPos> getFinalQueueOfBlocksToBreak() {
+        return finalQueueOfBlocksToBreak;
     }
 }

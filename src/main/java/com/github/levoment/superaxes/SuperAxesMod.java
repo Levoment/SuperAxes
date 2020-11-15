@@ -23,6 +23,8 @@ public class SuperAxesMod implements ModInitializer {
 	public static int range = 5;
 	public static boolean limitSearch = false;
 	public static int logRadius = 8;
+	public static int shapeScale = 1;
+	public static boolean showDebugLines = false;
 
 	@Override
 	public void onInitialize() {
@@ -51,6 +53,8 @@ public class SuperAxesMod implements ModInitializer {
 				configProperties.setProperty("range", "5");
 				configProperties.setProperty("limitSearch", String.valueOf(false));
 				configProperties.setProperty("logRadius", "8");
+				configProperties.setProperty("shapeScale", "1");
+				configProperties.setProperty("showDebugLines", String.valueOf(false));
 				// Save the properties to the config file
 				saveConfig(configFile, configProperties);
 				// Load the saved configuration
@@ -67,6 +71,8 @@ public class SuperAxesMod implements ModInitializer {
 				if (readProperties.getProperty("range") != null) SuperAxesMod.range = Integer.parseInt(readProperties.getProperty("range"));
 				if (readProperties.getProperty("limitSearch") != null) SuperAxesMod.limitSearch = Boolean.parseBoolean(readProperties.getProperty("limitSearch"));
 				if (readProperties.getProperty("logRadius") != null) SuperAxesMod.logRadius = Integer.parseInt(readProperties.getProperty("logRadius"));
+				if (readProperties.getProperty("shapeScale") != null) SuperAxesMod.shapeScale = Integer.parseInt(readProperties.getProperty("shapeScale"));
+				if (readProperties.getProperty("showDebugLines") != null) SuperAxesMod.showDebugLines = Boolean.parseBoolean(readProperties.getProperty("showDebugLines"));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
