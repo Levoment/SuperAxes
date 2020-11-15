@@ -1,12 +1,12 @@
 {
-  "item.lvmnt.wooden_superaxe": "Wooden SuperAxe",
-  "item.lvmnt.stone_superaxe": "Stone SuperAxe",
-  "item.lvmnt.iron_superaxe": "Iron SuperAxe",
-  "item.lvmnt.gold_superaxe": "Gold SuperAxe",
-  "item.lvmnt.diamond_superaxe": "Diamond SuperAxe",
-  "item.lvmnt.netherite_superaxe": "Netherite SuperAxe",
+  "item.superaxes.wooden_superaxe": "Wooden SuperAxe",
+  "item.superaxes.stone_superaxe": "Stone SuperAxe",
+  "item.superaxes.iron_superaxe": "Iron SuperAxe",
+  "item.superaxes.gold_superaxe": "Gold SuperAxe",
+  "item.superaxes.diamond_superaxe": "Diamond SuperAxe",
+  "item.superaxes.netherite_superaxe": "Netherite SuperAxe",
 
-  "itemGroup.lvmnt.superaxes": "SuperAxes",
+  "itemGroup.superaxes.superaxes": "SuperAxes",
 
   "configuration.superaxes.config": "SuperAxes configuration",
   "axebehaviour.superaxes.general": "SuperAxes behaviour",

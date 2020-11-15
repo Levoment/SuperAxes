@@ -55,10 +55,8 @@ public class SuperAxeItem extends AxeItem {
                 ItemScatterer.spawn(serverWorld, pos.getX(), pos.getY(), pos.getZ(), itemStack);
             });
             if (miner.getMainHandStack().getItem() instanceof SuperAxeItem) {
-                System.out.println("SuperAxeItem");
                 // Damage superaxe for each block that is broken
                 if (firstBlockBroken) {
-                    System.out.println("Damaging item");
                     miner.getMainHandStack().postMine(serverWorld, serverWorld.getBlockState(pos), pos, miner);
                     // Break the block
                     serverWorld.breakBlock(pos, false, miner);

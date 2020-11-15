@@ -1,12 +1,12 @@
 {
-  "item.lvmnt.wooden_superaxe": "超级木斧",
-  "item.lvmnt.stone_superaxe": "超级石斧",
-  "item.lvmnt.iron_superaxe": "超级铁斧",
-  "item.lvmnt.gold_superaxe": "超级金斧",
-  "item.lvmnt.diamond_superaxe": "超级钻石斧",
-  "item.lvmnt.netherite_superaxe": "超级下界合金斧",
+  "item.superaxes.wooden_superaxe": "超级木斧",
+  "item.superaxes.stone_superaxe": "超级石斧",
+  "item.superaxes.iron_superaxe": "超级铁斧",
+  "item.superaxes.gold_superaxe": "超级金斧",
+  "item.superaxes.diamond_superaxe": "超级钻石斧",
+  "item.superaxes.netherite_superaxe": "超级下界合金斧",
 
-  "itemGroup.lvmnt.superaxes": "超级斧头",
+  "itemGroup.superaxes.superaxes": "超级斧头",
 
   "configuration.superaxes.config": "超级斧头配置菜单",
   "axebehaviour.superaxes.general": "超级斧头通用",

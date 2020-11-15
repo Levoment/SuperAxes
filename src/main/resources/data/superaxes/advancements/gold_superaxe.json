@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "lvmnt:gold_superaxe": {
+    "superaxes:gold_superaxe": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -12,6 +12,6 @@
     }
   },
   "rewards": {
-    "recipes": ["lvmnt:gold_superaxe"]
+    "recipes": ["superaxes:gold_superaxe"]
   }
 }

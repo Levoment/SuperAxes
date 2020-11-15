@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "lvmnt:iron_superaxe": {
+    "superaxes:iron_superaxe": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -12,6 +12,6 @@
     }
   },
   "rewards": {
-    "recipes": ["lvmnt:iron_superaxe"]
+    "recipes": ["superaxes:iron_superaxe"]
   }
 }

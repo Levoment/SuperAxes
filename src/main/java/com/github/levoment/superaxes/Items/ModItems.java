@@ -30,7 +30,7 @@ public class ModItems {
         IronSuperAxe = new SuperAxeItem(new SuperAxesMaterialGenerator(ToolMaterials.IRON), new Item.Settings().group(SuperAxesMod.SUPERAXES_GROUP));
         GoldSuperAxe = new SuperAxeItem(new SuperAxesMaterialGenerator(ToolMaterials.GOLD), new Item.Settings().group(SuperAxesMod.SUPERAXES_GROUP));
         DiamondSuperAxe = new SuperAxeItem(new SuperAxesMaterialGenerator(ToolMaterials.DIAMOND), new Item.Settings().group(SuperAxesMod.SUPERAXES_GROUP));
-        NetheriteSuperAxe = new SuperAxeItem(new SuperAxesMaterialGenerator(ToolMaterials.NETHERITE), new Item.Settings().group(SuperAxesMod.SUPERAXES_GROUP));
+        NetheriteSuperAxe = new SuperAxeItem(new SuperAxesMaterialGenerator(ToolMaterials.NETHERITE), new Item.Settings().group(SuperAxesMod.SUPERAXES_GROUP).fireproof());
     }
 
     // Create a map with the identifier of the item and the item

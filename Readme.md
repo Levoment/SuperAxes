@@ -10,4 +10,4 @@ Minecraft mod for the Fabric Loader that adds Super Axes that chop down tree log
 ---
 
 
-[modIcon]: src/main/resources/assets/lvmnt/icon.png
+[modIcon]: src/main/resources/assets/superaxes/icon.png

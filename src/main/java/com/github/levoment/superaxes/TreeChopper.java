@@ -216,27 +216,26 @@ public class TreeChopper {
     public void breakLogs(World world, BlockPos blockPos, PlayerEntity miner, ItemStack itemStack) {
         // Check if player can edit block
         if (world.canPlayerModifyAt(miner, blockPos)) {
-            ModItems.mapOfIdentifiers.forEach((identifier, item) -> {
-                // Check if the item is in the player's main hand or if it broke while chopping the tree
-                if (Registry.ITEM.get(identifier).equals(miner.getMainHandStack().getItem()) || axeBroken) {
-                    // Check if the item is about to break
-                    if (miner.getMainHandStack().getMaxDamage() - miner.getMainHandStack().getDamage() == 1) axeBroken = true;
-                    // Check if the superaxe hasn't broken
-                    if (miner.getMainHandStack().getDamage() > 0) {
-                        // Damage superaxe for each block that is broken
-                        if (!firstBlockBroken) {
-                            this.firstBlockBroken = true;
-                        }
-                    }
-                    BlockState logBlockState = world.getBlockState(blockPos);
-                    if (logBlockState.isIn(BlockTags.LOGS)) {
-                        if (!world.isClient()) {
-                            // Harvest the block
-                            ((SuperAxeItem) itemStack.getItem()).mineBlockWithLootContext(logBlockState, (ServerWorld) world, blockPos, miner, firstBlockBroken);
-                        }
+            boolean isItemSuperAxe = miner.getMainHandStack().getItem() instanceof SuperAxeItem;
+            // Check if the item is in the player's main hand or if it broke while chopping the tree
+            if (isItemSuperAxe || axeBroken) {
+                // Check if the item is about to break
+                if (miner.getMainHandStack().getMaxDamage() - miner.getMainHandStack().getDamage() == 1) axeBroken = true;
+                // Check if the superaxe hasn't broken or if the game mode is creative
+                if (miner.getMainHandStack().getDamage() > 0 || world.getServer().getDefaultGameMode().isCreative()) {
+                    if (!firstBlockBroken) {
+                        // Set that the first block is already broken as it will be broken
+                        this.firstBlockBroken = true;
                     }
                 }
-            });
+                BlockState logBlockState = world.getBlockState(blockPos);
+                if (logBlockState.isIn(BlockTags.LOGS)) {
+                    if (!world.isClient()) {
+                        // Harvest the block
+                        ((SuperAxeItem) itemStack.getItem()).mineBlockWithLootContext(logBlockState, (ServerWorld) world, blockPos, miner, firstBlockBroken);
+                    }
+                }
+            }
         }
     }
 

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "lvmnt",
+  "id": "superaxes",
   "version": "${version}",
 
   "name": "SuperAxes",
@@ -14,7 +14,7 @@
   },
 
   "license": "MIT",
-  "icon": "assets/lvmnt/icon.png",
+  "icon": "assets/superaxes/icon.png",
 
   "environment": "*",
   "entrypoints": {
@@ -26,13 +26,13 @@
     ]
   },
   "mixins": [
-    "lvmnt.mixins.json"
+
   ],
 
   "depends": {
     "fabricloader": ">=0.7.8",
     "fabric": "*",
-    "minecraft": ["1.16.2", "1.16.3"]
+    "minecraft": ["1.16.2", "1.16.3", "1.16.4"]
   },
   "suggests": {
     "flamingo": "*"

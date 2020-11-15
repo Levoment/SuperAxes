@@ -14,7 +14,7 @@ import java.util.Properties;
 
 public class SuperAxesMod implements ModInitializer {
 
-	public static String MODID = "lvmnt";
+	public static String MODID = "superaxes";
 	public static final ItemGroup SUPERAXES_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, "superaxes"), () -> new ItemStack(ModItems.WoodenSuperAxe));
 	// Config file
 	public static File configFile = new File(FabricLoader.getInstance().getConfigDir().toFile(), "superaxes.properties");

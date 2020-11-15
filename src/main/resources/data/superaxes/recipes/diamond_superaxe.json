@@ -7,17 +7,17 @@
   ],
   "key": {
     "W": {
-      "item": "minecraft:iron_block"
+      "item": "minecraft:diamond_block"
     },
     "P": {
-      "item": "minecraft:iron_ingot"
+      "item": "minecraft:diamond"
     },
     "S": {
       "item": "minecraft:stick"
     }
   },
   "result": {
-    "item": "lvmnt:iron_superaxe"
+    "item": "superaxes:diamond_superaxe"
   }
 }
 

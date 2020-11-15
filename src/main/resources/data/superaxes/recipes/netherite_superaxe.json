@@ -1,12 +1,12 @@
 {
   "type": "minecraft:smithing",
   "base": {
-    "item": "lvmnt:diamond_superaxe"
+    "item": "superaxes:diamond_superaxe"
   },
   "addition": {
     "item": "minecraft:netherite_ingot"
   },
   "result": {
-    "item": "lvmnt:netherite_superaxe"
+    "item": "superaxes:netherite_superaxe"
   }
 }
