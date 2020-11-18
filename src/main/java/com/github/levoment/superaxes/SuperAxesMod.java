@@ -25,6 +25,7 @@ public class SuperAxesMod implements ModInitializer {
 	public static int logRadius = 8;
 	public static int shapeScale = 1;
 	public static boolean showDebugLines = false;
+	public static boolean showDebugHighlight = false;
 
 	@Override
 	public void onInitialize() {
@@ -55,6 +56,7 @@ public class SuperAxesMod implements ModInitializer {
 				configProperties.setProperty("logRadius", "8");
 				configProperties.setProperty("shapeScale", "1");
 				configProperties.setProperty("showDebugLines", String.valueOf(false));
+				configProperties.setProperty("showDebugHighlight", String.valueOf(false));
 				// Save the properties to the config file
 				saveConfig(configFile, configProperties);
 				// Load the saved configuration
@@ -73,6 +75,7 @@ public class SuperAxesMod implements ModInitializer {
 				if (readProperties.getProperty("logRadius") != null) SuperAxesMod.logRadius = Integer.parseInt(readProperties.getProperty("logRadius"));
 				if (readProperties.getProperty("shapeScale") != null) SuperAxesMod.shapeScale = Integer.parseInt(readProperties.getProperty("shapeScale"));
 				if (readProperties.getProperty("showDebugLines") != null) SuperAxesMod.showDebugLines = Boolean.parseBoolean(readProperties.getProperty("showDebugLines"));
+				if (readProperties.getProperty("showDebugHighlight") != null) SuperAxesMod.showDebugHighlight = Boolean.parseBoolean(readProperties.getProperty("showDebugHighlight"));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

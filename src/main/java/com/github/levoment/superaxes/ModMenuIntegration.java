@@ -85,6 +85,20 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setSaveConsumer(newValue -> SuperAxesMod.showDebugLines = newValue)
                     .build());
 
+            // The shape show debug highlight tooltip
+            Text[] showDebugHighlightText = {
+                    new TranslatableText("option.superaxes.debug_highlight").setStyle(Style.EMPTY.withBold(true)),
+                    new TranslatableText("option.superaxes.debug_highlight.tooltip"),
+                    new TranslatableText("option.superaxes.debug_highlight.tooltip_2"),
+                    new TranslatableText("option.superaxes.debug_highlight.tooltip_3"),
+                    new TranslatableText("option.superaxes.debug_highlight.tooltip_4")};
+            // Set an option for showing bounding box of blocks that will be broken
+            general.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("option.superaxes.debug_highlight"), SuperAxesMod.showDebugHighlight)
+                    .setDefaultValue(false)
+                    .setTooltip(showDebugHighlightText)
+                    .setSaveConsumer(newValue -> SuperAxesMod.showDebugHighlight = newValue)
+                    .build());
+
             // Save config
             builder.setSavingRunnable(() -> {
                 // Create a Property
@@ -96,6 +110,7 @@ public class ModMenuIntegration implements ModMenuApi {
                 configProperties.setProperty("logRadius", String.valueOf(SuperAxesMod.logRadius));
                 configProperties.setProperty("shapeScale", String.valueOf(SuperAxesMod.shapeScale));
                 configProperties.setProperty("showDebugLines", String.valueOf(SuperAxesMod.showDebugLines));
+                configProperties.setProperty("showDebugHighlight", String.valueOf(SuperAxesMod.showDebugHighlight));
                 // Save the properties
                 SuperAxesMod.saveConfig(SuperAxesMod.configFile, configProperties);
             });

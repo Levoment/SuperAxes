@@ -34,6 +34,12 @@ public class SuperAxeItem extends AxeItem {
     // Target block
     private BlockHitResult blockHitResult;
 
+    // Target crosshair
+    BlockPos targetBlockPos;
+
+    // Variable to hold the current thread
+    Thread currentThread;
+
     // Constructor
     public SuperAxeItem(ToolMaterial material, Settings settings) {
         super(material, ((SuperAxesMaterialGenerator)material).getAxeAttackDamage(), ((SuperAxesMaterialGenerator) material).getAxeAttackSpeed(), settings);
@@ -108,16 +114,35 @@ public class SuperAxeItem extends AxeItem {
         isPlayerSneaking = Objects.requireNonNull(context.getPlayer()).isSneaking();
         if (context.getWorld().isClient() && context.getWorld().getBlockState(context.getBlockPos()).isIn(BlockTags.LOGS)) {
             // If the player is sneaking and the render boxes has not been set and the configuration has show debug lines set
-            if (isPlayerSneaking && !this.renderBoxes && SuperAxesMod.showDebugLines) {
+            if (isPlayerSneaking && !this.renderBoxes && (SuperAxesMod.showDebugLines || SuperAxesMod.showDebugHighlight)) {
                 if (MinecraftClient.getInstance().crosshairTarget instanceof BlockHitResult) {
-                    // Create the tree chopper instance
-                    this.treeChopper = new TreeChopper();
-                    // Scan for the tree
-                    this.treeChopper.scanTree(context.getWorld(), context.getBlockPos());
-                    // Set a variable to render boxes
-                    this.renderBoxes = true;
-                    this.blockHitResult = (BlockHitResult) MinecraftClient.getInstance().crosshairTarget;
-                    return ActionResult.CONSUME;
+                    // Check if a thread has not been created
+                    if (currentThread == null) {
+                        // Create the tree chopper instance
+                        this.treeChopper = new TreeChopper();
+                        // Create a new thread for scanning for the tree
+                        this.currentThread = new Thread(() -> this.treeChopper.scanTree(context.getWorld(), context.getBlockPos()));
+                        this.currentThread.start();
+                        // Set a variable to render boxes
+                        this.renderBoxes = true;
+                        this.blockHitResult = (BlockHitResult) MinecraftClient.getInstance().crosshairTarget;
+                        this.targetBlockPos = blockHitResult.getBlockPos();
+                        return ActionResult.CONSUME;
+                    } else {
+                        // Check if the current thread is not active
+                        if (!currentThread.isAlive()) {
+                            // Create the tree chopper instance
+                            this.treeChopper = new TreeChopper();
+                            // Create a new thread for scanning for the tree
+                            this.currentThread = new Thread(() -> this.treeChopper.scanTree(context.getWorld(), context.getBlockPos()));
+                            this.currentThread.start();
+                            // Set a variable to render boxes
+                            this.renderBoxes = true;
+                            this.blockHitResult = (BlockHitResult) MinecraftClient.getInstance().crosshairTarget;
+                            this.targetBlockPos = blockHitResult.getBlockPos();
+                            return ActionResult.CONSUME;
+                        }
+                    }
                 }
             } else if (context.getPlayer().isSneaking() && this.renderBoxes) {
                 // Set a variable to stop rendering boxes
@@ -151,4 +176,9 @@ public class SuperAxeItem extends AxeItem {
     public void setShouldRenderBoxes(boolean renderBoxes) {
         this.renderBoxes = renderBoxes;
     }
+
+    public BlockPos getTargetBlockPos() {
+        return targetBlockPos;
+    }
+
 }
