@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.BlockTags;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
@@ -108,9 +109,9 @@ public class TreeChopper {
                     // Check if we don't want to harvest leaves
                     if (!SuperAxesMod.harvestLeaves) {
                         if (SuperAxesMod.limitSearch) {
-                            if (Math.abs(newPosition.getX() - originalPosition.getX()) < SuperAxesMod.logRadius || Math.abs(newPosition.getZ() - newPosition.getZ()) < SuperAxesMod.logRadius) {
+                            if (Math.abs(newPosition.getX() - originalPosition.getX()) < SuperAxesMod.logRadius && Math.abs(newPosition.getZ() - newPosition.getZ()) < SuperAxesMod.logRadius) {
                                 // Check if the blockstate is not null, the block is not null, and if the block is a log coming from another log, should alleviate most leaf->2nd tree issues
-                                if (world.getBlockState(newPosition) != null && world.getBlockState(newPosition).getBlock() != null && ((world.getBlockState(newPosition).isIn(BlockTags.LOGS) && CurrentIsLog))) {
+                                if (world.getBlockState(newPosition) != null && world.getBlockState(newPosition).getBlock() != null && (((world.getBlockState(newPosition).isIn(BlockTags.LOGS))))) {
                                     // Check that the block was not previously added to the stack
                                     if (!verificationQueueOfBlocksToBreak.contains(newPosition)) {
                                         // Add the block to the verification queue of blocks to break and also add it to the queue of blocks to break to continue searching for blocks to break
@@ -121,7 +122,7 @@ public class TreeChopper {
                             }
                         } else {
                             // Check if the blockstate is not null, the block is not null, and if the block is a log coming from another log, should alleviate most leaf->2nd tree issues
-                            if (world.getBlockState(newPosition) != null && world.getBlockState(newPosition).getBlock() != null && ((world.getBlockState(newPosition).isIn(BlockTags.LOGS) && CurrentIsLog))) {
+                            if (world.getBlockState(newPosition) != null && world.getBlockState(newPosition).getBlock() != null && ((world.getBlockState(newPosition).isIn(BlockTags.LOGS)))) {
                                 // Check that the block was not previously added to the stack
                                 if (!verificationQueueOfBlocksToBreak.contains(newPosition)) {
                                     // Add the block to the verification queue of blocks to break and also add it to the queue of blocks to break to continue searching for blocks to break
@@ -136,7 +137,7 @@ public class TreeChopper {
                         // Check if the block blockstate is not null and if the block is not null
                         if (world.getBlockState(newPosition) != null && world.getBlockState(newPosition).getBlock() != null) {
                             if (SuperAxesMod.limitSearch) {
-                                if (Math.abs(newPosition.getX() - originalPosition.getX()) < SuperAxesMod.logRadius || Math.abs(newPosition.getZ() - newPosition.getZ()) < SuperAxesMod.logRadius) {
+                                if (Math.abs(newPosition.getX() - originalPosition.getX()) < SuperAxesMod.logRadius && Math.abs(newPosition.getZ() - newPosition.getZ()) < SuperAxesMod.logRadius) {
                                     // If it is a log add it to the list of logs to break
                                     if (world.getBlockState(newPosition).isIn(BlockTags.LOGS)) {
                                         if (!verificationQueueOfBlocksToBreak.contains(newPosition)) {
@@ -307,7 +308,7 @@ public class TreeChopper {
                         }
                     }
                     // Check if leaves are an instance of LeavesBlock
-                    if (world.getBlockState(blockPos).isIn(BlockTags.LEAVES) && world.getBlockState(blockPos).getBlock() instanceof LeavesBlock) {
+                    if (world.getBlockState(blockPos).isIn(BlockTags.LEAVES)  && world.getBlockState(blockPos).getBlock() instanceof LeavesBlock) {
                         try {
                             BlockState leafBlockState = world.getBlockState(blockPos);
                             // Check if the leaves are a Distance of 7 from a log
