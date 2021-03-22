@@ -67,6 +67,8 @@ logs that would be harvested if the player mines that log.
 To remove the highlight, the player can Sneak+Use (Shift+Right Click) 
 again on the log.
 
+![DebugHighlight]
+
 **Notes**:
 
 If you change the item in the main hand to another item or throw the 
