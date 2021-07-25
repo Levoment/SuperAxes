@@ -80,9 +80,9 @@ public class SuperAxesWorldRendererMixin {
             return;
         }
         // If the show debug lines or show debug highlight configuration is not set to true, return
-        if (!(SuperAxesMod.showDebugLines || SuperAxesMod.showDebugHighlight)) {
-            return;
-        }
+//        if (!(SuperAxesMod.showDebugLines || SuperAxesMod.showDebugHighlight)) {
+//            return;
+//        }
 
         // Get the player item in their main hand
         ItemStack playerMainHandStack = ((ClientPlayerEntity)entity).getMainHandStack();
@@ -106,31 +106,33 @@ public class SuperAxesWorldRendererMixin {
                     // uses the SuperAxeItem to mine the log they were looking at when they activated the debug lines to be shown
                     BlockingQueue<BlockPos> positions = superAxeItem.getTreeChopper().getFinalQueueOfBlocksToBreak();
 
-                    if (SuperAxesMod.showDebugHighlight) {
-                        float newRed = 255 / 255.0F;
-                        float newGreen = 215 / 255.0F;
-                        float newBlue = 0 / 255.0F;
-                        float newAlpha = 0.4F;
-                        buffer.begin(GL11.GL_QUADS, VertexFormats.POSITION_COLOR);
-                        stack.push();
-                        stack.translate(-d, -e, -f);
-                        Matrix4f matrix = stack.peek().getModel();
-                        // Assemble outline shape
-                        for (BlockPos position : positions) {
-                            drawVertices(buffer, matrix, client.world, position, newRed, newGreen, newBlue, newAlpha);
-                        }
-                        stack.pop();
-                        buffer.end();
-                        RenderSystem.disableTexture();
-                        RenderSystem.enableBlend();
-                        RenderSystem.blendFuncSeparate(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SrcFactor.ONE, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA);
-                        RenderSystem.enableDepthTest();
-                        RenderSystem.depthFunc(GL11.GL_LEQUAL);
-                        RenderSystem.polygonOffset(0.0F, 0.0F);
-                        RenderSystem.enablePolygonOffset();
-                        RenderSystem.disableCull();
-                        BufferRenderer.draw(buffer);
-                    }
+//                    if (SuperAxesMod.showDebugHighlight) {
+//                        float newRed = 255 / 255.0F;
+//                        float newGreen = 215 / 255.0F;
+//                        float newBlue = 0 / 255.0F;
+//                        float newAlpha = 0.4F;
+//
+//                        buffer.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
+//
+//                        stack.push();
+//                        stack.translate(-d, -e, -f);
+//                        Matrix4f matrix = stack.peek().getModel();
+//                        // Assemble outline shape
+//                        for (BlockPos position : positions) {
+//                            drawVertices(buffer, matrix, client.world, position, newRed, newGreen, newBlue, newAlpha);
+//                        }
+//                        stack.pop();
+//                        buffer.end();
+//                        RenderSystem.disableTexture();
+//                        RenderSystem.enableBlend();
+//                        RenderSystem.blendFuncSeparate(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SrcFactor.ONE, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA);
+//                        RenderSystem.enableDepthTest();
+//                        RenderSystem.depthFunc(GL11.GL_LEQUAL);
+//                        RenderSystem.polygonOffset(0.0F, 0.0F);
+//                        RenderSystem.enablePolygonOffset();
+//                        RenderSystem.disableCull();
+//                        BufferRenderer.draw(buffer);
+//                    }
 
                     if (SuperAxesMod.showDebugLines) {
                         List<VoxelShape> outlineShapes = new ArrayList<>();
@@ -195,37 +197,37 @@ public class SuperAxesWorldRendererMixin {
             float maxY = (float) box.maxY + pos.getY();
             float maxZ = (float) box.maxZ + pos.getZ();
 
-            if (Block.shouldDrawSide(state, world, pos, Direction.DOWN)) {
+            if (Block.shouldDrawSide(state, world, pos, Direction.DOWN, pos)) {
                 buffer.vertex(matrix, maxX, minY, minZ).color(red, green, blue, alpha).next();
                 buffer.vertex(matrix, maxX, minY, maxZ).color(red, green, blue, alpha).next();
                 buffer.vertex(matrix, minX, minY, maxZ).color(red, green, blue, alpha).next();
                 buffer.vertex(matrix, minX, minY, minZ).color(red, green, blue, alpha).next();
             }
-            if (Block.shouldDrawSide(state, world, pos, Direction.UP)) {
+            if (Block.shouldDrawSide(state, world, pos, Direction.UP, pos)) {
                 buffer.vertex(matrix, minX, maxY, maxZ).color(red, green, blue, alpha).next();
                 buffer.vertex(matrix, maxX, maxY, maxZ).color(red, green, blue, alpha).next();
                 buffer.vertex(matrix, maxX, maxY, minZ).color(red, green, blue, alpha).next();
                 buffer.vertex(matrix, minX, maxY, minZ).color(red, green, blue, alpha).next();
             }
-            if (Block.shouldDrawSide(state, world, pos, Direction.NORTH)) {
+            if (Block.shouldDrawSide(state, world, pos, Direction.NORTH, pos)) {
                 buffer.vertex(matrix, minX, maxY, minZ).color(red, green, blue, alpha).next();
                 buffer.vertex(matrix, maxX, maxY, minZ).color(red, green, blue, alpha).next();
                 buffer.vertex(matrix, maxX, minY, minZ).color(red, green, blue, alpha).next();
                 buffer.vertex(matrix, minX, minY, minZ).color(red, green, blue, alpha).next();
             }
-            if (Block.shouldDrawSide(state, world, pos, Direction.SOUTH)) {
+            if (Block.shouldDrawSide(state, world, pos, Direction.SOUTH, pos)) {
                 buffer.vertex(matrix, minX, minY, maxZ).color(red, green, blue, alpha).next();
                 buffer.vertex(matrix, maxX, minY, maxZ).color(red, green, blue, alpha).next();
                 buffer.vertex(matrix, maxX, maxY, maxZ).color(red, green, blue,alpha).next();
                 buffer.vertex(matrix, minX, maxY, maxZ).color(red, green, blue, alpha).next();
             }
-            if (Block.shouldDrawSide(state, world, pos, Direction.WEST)) {
+            if (Block.shouldDrawSide(state, world, pos, Direction.WEST, pos)) {
                 buffer.vertex(matrix, minX, minY, minZ).color(red, green, blue, alpha).next();
                 buffer.vertex(matrix, minX, minY, maxZ).color(red, green, blue, alpha).next();
                 buffer.vertex(matrix, minX, maxY, maxZ).color(red, green, blue, alpha).next();
                 buffer.vertex(matrix, minX, maxY, minZ).color(red, green, blue, alpha).next();
             }
-            if (Block.shouldDrawSide(state, world, pos, Direction.EAST)) {
+            if (Block.shouldDrawSide(state, world, pos, Direction.EAST, pos)) {
                 buffer.vertex(matrix, maxX, maxY, minZ).color(red, green, blue, alpha).next();
                 buffer.vertex(matrix, maxX, maxY, maxZ).color(red, green, blue, alpha).next();
                 buffer.vertex(matrix, maxX, minY, maxZ).color(red, green, blue, alpha).next();

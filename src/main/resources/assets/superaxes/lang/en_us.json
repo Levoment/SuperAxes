@@ -27,11 +27,6 @@
   "option.superaxes.debug_lines.tooltip": "Default is §cNo§r",
   "option.superaxes.debug_lines.tooltip_2": "Use §aYes §rto enable the use of SHIFT+RIGHT_CLICK to see log blocks",
   "option.superaxes.debug_lines.tooltip_3": "that would be harvested if the SuperAxe is used on the log block",
-  "option.superaxes.debug_lines.tooltip_4": "that was SHIFT+RIGHT_CLICKED upon.",
-  "option.superaxes.debug_highlight": "Show Debug Highlight",
-  "option.superaxes.debug_highlight.tooltip": "Default is §cNo§r",
-  "option.superaxes.debug_highlight.tooltip_2": "Use §aYes §rto enable the use of SHIFT+RIGHT_CLICK to see log blocks",
-  "option.superaxes.debug_highlight.tooltip_3": "that would be harvested if the SuperAxe is used on the log block",
-  "option.superaxes.debug_highlight.tooltip_4": "that was SHIFT+RIGHT_CLICKED upon."
+  "option.superaxes.debug_lines.tooltip_4": "that was SHIFT+RIGHT_CLICKED upon."
 }
 

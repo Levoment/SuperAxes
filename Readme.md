@@ -59,7 +59,7 @@ again on the log.
 
 ![DebugLines]
 
-Starting on version **2.0.9** of the mod:
+On versions **2.0.9**, **2.0.10**, and **2.0.11** of the mod:
 
 If enabled, the **Show Debug Highlight** option allows the 
 player to Sneak+Use (Shift+Right Click) on a log to highlight the 

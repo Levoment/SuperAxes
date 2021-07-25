@@ -123,7 +123,7 @@ public class SuperAxeItem extends AxeItem {
         isPlayerSneaking = Objects.requireNonNull(context.getPlayer()).isSneaking();
         if (context.getWorld().isClient() && context.getWorld().getBlockState(context.getBlockPos()).isIn(BlockTags.LOGS)) {
             // If the player is sneaking and the render boxes has not been set and the configuration has show debug lines set
-            if (isPlayerSneaking && !this.renderBoxes && (SuperAxesMod.showDebugLines || SuperAxesMod.showDebugHighlight)) {
+            if (isPlayerSneaking && !this.renderBoxes && (SuperAxesMod.showDebugLines)) {
                 if (MinecraftClient.getInstance().crosshairTarget instanceof BlockHitResult) {
                     // Check if a thread has not been created
                     if (currentThread == null) {
