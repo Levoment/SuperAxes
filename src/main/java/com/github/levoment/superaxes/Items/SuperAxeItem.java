@@ -72,14 +72,19 @@ public class SuperAxeItem extends AxeItem {
             List<ItemStack> listOfDroppedStacks = leafBlockState.getDroppedStacks(builder);
             listOfDroppedStacks.forEach(itemStack -> {
                 // Drop the item on the world
-                ItemScatterer.spawn(serverWorld, pos.getX(), pos.getY(), pos.getZ(), itemStack);
+                serverWorld.getServer().submit(() -> {
+                    ItemScatterer.spawn(serverWorld, pos.getX(), pos.getY(), pos.getZ(), itemStack);
+                });
+
             });
             if (miner.getMainHandStack().getItem() instanceof SuperAxeItem) {
                 // Damage superaxe for each block that is broken
                 if (firstBlockBroken) {
                     miner.getMainHandStack().postMine(serverWorld, serverWorld.getBlockState(pos), pos, miner);
                     // Break the block
-                    serverWorld.breakBlock(pos, false, miner);
+                    serverWorld.getServer().submit(() -> {
+                        serverWorld.breakBlock(pos, false, miner);
+                    });
                 }
             }
         }
@@ -93,7 +98,9 @@ public class SuperAxeItem extends AxeItem {
             List<ItemStack> listOfDroppedStacks = leafBlockState.getDroppedStacks(builder);
             listOfDroppedStacks.forEach(itemStack -> {
                 // Drop the item on the world
-                ItemScatterer.spawn(serverWorld, pos.getX(), pos.getY(), pos.getZ(), itemStack);
+                serverWorld.getServer().submit(() -> {
+                    ItemScatterer.spawn(serverWorld, pos.getX(), pos.getY(), pos.getZ(), itemStack);
+                });
             });
 
         if (miner.getMainHandStack().getItem() instanceof SuperAxeItem) {
@@ -101,7 +108,9 @@ public class SuperAxeItem extends AxeItem {
             if (firstBlockBroken) {
                 miner.getMainHandStack().postMine(serverWorld, serverWorld.getBlockState(pos), pos, miner);
                 // Break the block
-                serverWorld.breakBlock(pos, false, miner);
+                serverWorld.getServer().submit(() -> {
+                    serverWorld.breakBlock(pos, false, miner);
+                });
             }
         }
 
